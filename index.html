@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanckut In Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="flex justify-center items-center">
+        <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-lg mx-auto text-center">
+                <!-- <div class="flex justify-center items-center" id="trueLogin">
+                    <div class="p-4 w-1/2 text-green-700 border rounded border-green-900/10 bg-green-50 text-center"
+                        role="alert">
+                        <strong class="text-sm font-medium"> Anda Telah Login! <a href="/dashboard.html"
+                                class="hover:text-green-400">Klik Disini</a> </strong>
+                    </div>
+                </div> -->
+                <h1 class="text-2xl font-bold sm:text-3xl">Sanckut In Login</h1>
+                <p class="mt-4 text-gray-500">
+                    Satu untuk semua. Semua role dapat login di halaman ini. Harap masukan username dan password dengan
+                    benar
+                </p>
+            </div>
+            <form action="" class="max-w-md mx-auto mt-8 mb-0 space-y-4">
+                <div>
+                    <label for="text" class="sr-only">Username</label>
+
+                    <div class="relative">
+                        <input type="text" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter username" id="usernameLogin" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <div class="relative">
+                        <input type="password" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter password" id="passwordLogin" />
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <p class="text-sm text-gray-500" id="rPage">
+                        No account?
+                        <a class="underline" href="/register.html">Sign up</a>
+                    </p>
+
+                    <button type="submit"
+                        class="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-orange-400 rounded-lg"
+                        id="loginButton" onclick="onLogin()">
+                        Sign in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let usernameLogin = document.getElementById('usernameLogin');
+        let passwordLogin = document.getElementById('passwordLogin');
+        let loginButton = document.getElementById('loginButton');
+
+        if (localStorage.getItem('checker')) {
+            window.location.href = './dashboard.html'
+        }
+
+        function onLogin() {
+            let storedUser = localStorage.getItem('username');
+            let storedPw = localStorage.getItem('password');
+
+            localStorage.setItem('username', usernameLogin.value);
+
+            if (usernameLogin.value == storedUser && passwordLogin.value == storedPw) {
+                localStorage.setItem('checker', true);
+                window.location.href = './dashboard.html';
+                alert('Berhasil Login');
+
+            } else if (usernameLogin.value == 'presiden' && passwordLogin.value == 'presiden123') {
+                localStorage.setItem("role", "presiden");
+                localStorage.setItem('checker', true);
+                window.location.href = './dashboard.html';
+                alert('Berhasil Login');
+
+            } else if (usernameLogin.value == 'dpr' && passwordLogin.value == 'dpr123') {
+                localStorage.setItem("role", "dpr");
+                localStorage.setItem('checker', true);
+                window.location.href = './dashboard.html'
+                alert('Berhasil Login');
+
+            } else {
+                alert('Username atau Kata Sandi Salah!');
+                localStorage.clear()
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanckut In Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="registerForm">
+        <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-lg mx-auto text-center">
+                <h1 class="text-2xl font-bold sm:text-3xl">Sanckut In Register</h1>
+
+                <p class="mt-4 text-gray-500">
+                    Diharapkan seluruh rakyat segera mendaftar. Jika tidak mendaftar dengan berat hati kami akan
+                    keluarkan anda dari warga negara
+                </p>
+            </div>
+
+            <form action="" class="max-w-md mx-auto mt-8 mb-0 space-y-4">
+                <div>
+                    <label for="text" class="sr-only">Username</label>
+
+                    <div class="relative">
+                        <input type="text" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter username" id="usernameRegister" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <div class="relative">
+                        <input type="password" class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                            placeholder="Enter password" id="passwordRegister" />
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <p class="text-sm text-gray-500">
+                        Have account?
+                        <a class="underline" href="/index.html">Sign in</a>
+                    </p>
+
+                    <button type="submit"
+                        class="inline-block px-5 py-3 ml-3 text-sm font-medium text-white bg-orange-400 rounded-lg"
+                        id="registerButton" onclick="onRegister()">
+                        Sign up
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let usernameRegister = document.getElementById('usernameRegister');
+        let passwordRegister = document.getElementById('passwordRegister');
+        let registerButton = document.getElementById('registerButton');
+
+        if (localStorage.getItem('checker')) {
+            window.location.href = './dashboard.html'
+        }
+
+        function onRegister() {
+            if (usernameRegister.value == localStorage.getItem('username')) {
+                alert('Username Telah Terdaftar')
+            } else {
+                window.location.href = './';
+                localStorage.setItem('username', usernameRegister.value);
+                localStorage.setItem('password', passwordRegister.value);
+                localStorage.setItem("role", "rakyat");
+                alert('Akun Rakyat Berhasil Dibuat');
+            }
+        }
+    </script>
+</body>
+
+</html>

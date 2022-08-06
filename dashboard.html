@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanckut In Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div>
+        <!-- Navbar Start -->
+        <nav class="flex items-center justify-between max-w-3xl p-4 mx-auto" id="navbar">
+            <a class="inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-lg" href="">
+                👋
+            </a>
+
+            <ul class="flex items-center space-x-2 text-sm font-medium text-gray-500" on>
+                <li class="hidden lg:block">
+                    <a class="px-3 py-2 rounded-lg" href="/"> Home </a>
+                </li>
+
+                <li><a class="px-3 py-2 rounded-lg" href=""> Projects </a></li>
+
+                <li>
+                    <a class="inline-flex items-center px-3 py-2 rounded-lg" href="" target="_blank" id="logoutButton"
+                        onclick="onLogout()">
+                        Logout
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="ml-1.5 w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="flex justify-center items-center">
+            <div class="p-4 w-1/2 text-green-700 border rounded border-green-900/10 bg-green-50 text-center"
+                role="alert" id="trueLogin">
+                <strong class="text-sm font-medium" id="presiden"> Selamat Datang Presiden! </strong>
+                <strong class="text-sm font-medium" id="dpr"> Selamat Datang DPR! </strong>
+                <strong class="text-sm font-medium" id="rakyat"> Selamat Datang Rakyat! </strong>
+            </div>
+            <div class="p-4 w-1/2 text-red-700 border rounded border-red-900/10 bg-red-50 text-center" role="alert"
+                id="falseLogin">
+                <strong class="text-sm font-medium" id="falseText"> Anda Belum Login! </strong>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let presiden = document.getElementById('presiden');
+        let dpr = document.getElementById('dpr');
+        let rakyat = document.getElementById('rakyat');
+        let trueLogin = document.getElementById('trueLogin');
+        let falseLogin = document.getElementById('falseLogin');
+        let navbar = document.getElementById('navbar')
+        // let falseText = document.getElementById('falseText');
+
+        falseLogin.style.display = "none";
+
+        if (localStorage.getItem('checker')) {
+            if (localStorage.getItem('username')) {
+                if (localStorage.getItem('role') == "presiden") {
+                    presiden.style.display = "block";
+                    dpr.style.display = "none";
+                    rakyat.style.display = "none";
+                } else if (localStorage.getItem('role') == "dpr") {
+                    presiden.style.display = "none";
+                    dpr.style.display = "block";
+                    rakyat.style.display = "none";
+                } else {
+                    presiden.style.display = "none";
+                    dpr.style.display = "none";
+                    rakyat.style.display = "block";
+                }
+            }
+        } else {
+            navbar.style.display = 'none';
+            falseLogin.style.display = "block";
+            // falseText.style.display = "block";
+            trueLogin.style.display = "none";
+        }
+
+        function onLogout() {
+            localStorage.clear()
+            window.location.href = "./index.html"
+        }
+    </script>
+</body>
+
+</html>
